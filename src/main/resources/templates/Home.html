@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyBookStore</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css"> <!-- Добавляем наши собственные стили -->
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">MyBookStore</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/genres">Жанры</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/basket">Корзина</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="add-book">Добавить книгу</a> <!-- Ссылка на страницу добавления книги -->
+            </li>
+        </ul>
+        <!-- Форма поиска книг по автору -->
+        <form class="form-inline my-2 my-lg-0" id="searchForm">
+            <input class="form-control mr-sm-2" type="search" placeholder="Поиск" aria-label="Search" id="authorName" required>
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="searchButton">Поиск</button>
+        </form>
+    </div>
+</nav>
+
+<div class="container" id="bookContainer">
+    <!-- Здесь будет содержимое страницы -->
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#searchForm').submit(function(e) {
+            e.preventDefault(); // Предотвращаем отправку формы по умолчанию
+
+            // Получаем значение поля ввода с именем автора
+            var authorName = $('#authorName').val();
+
+            // Отправляем AJAX запрос на сервер
+            $.ajax({
+                type: 'GET',
+                url: '/books/' + authorName, // Путь к методу, обрабатывающему запрос на сервере
+                success: function(response) {
+                    // При успешном выполнении запроса обновляем содержимое контейнера bookContainer
+                    $('#bookContainer').html(response);
+                },
+                error: function(xhr, status, error) {
+                    // Обработка ошибок, если таковые возникли
+                    console.error(error);
+                }
+            });
+        });
+    });
+</script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"
+        integrity="sha384-LIGd4f8L1WA+vrSuZ10lkk9jLPxwZlUWhrPzPga4rfr8wD9Eq39UplG6LoK9ix1L"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-EI7FgC7pi3/AOWGi1DgZfktC/akUcFtFfFtbs423jI/xlL+o7/J3BQtgo4NSTV8C"
+        crossorigin="anonymous"></script>
+</body>
+</html>

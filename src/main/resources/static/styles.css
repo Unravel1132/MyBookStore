@@ -1,0 +1,34 @@
+/* Стили для навигационной панели */
+.navbar {
+    background-color: #f8f9fa; /* Цвет фона */
+    border-bottom: 1px solid #dee2e6; /* Рамка снизу */
+}
+
+.navbar-brand {
+    font-weight: bold; /* Жирный шрифт для логотипа */
+}
+
+.navbar-nav .nav-link {
+    color: #007bff; /* Цвет ссылок */
+}
+
+/* Стили для контейнера с контентом */
+.container {
+    margin-top: 20px; /* Отступ сверху */
+}
+
+/* Стили для кнопки поиска */
+.form-control {
+    margin-right: 10px; /* Отступ справа */
+}
+
+.btn-outline-success {
+    color: #28a745; /* Цвет текста */
+    border-color: #28a745; /* Цвет границы */
+}
+
+.btn-outline-success:hover {
+    background-color: #28a745; /* Цвет фона при наведении */
+    color: #fff; /* Цвет текста при наведении */
+    border-color: #28a745; /* Цвет границы при наведении */
+}
